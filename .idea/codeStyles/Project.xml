@@ -1,0 +1,8 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <codeStyleSettings language="JAVA">
+      <option name="KEEP_LINE_BREAKS" value="false" />
+      <option name="SPACE_AROUND_METHOD_REF_DBL_COLON" value="true" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>
