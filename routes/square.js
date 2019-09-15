@@ -1,10 +1,11 @@
 import { Router } from "express";
-import axios from 'axios'
 var router = Router();
 
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
     var input = req.body['input'];
-    res.send(JSON.stringify(parseInt(input) * parseInt(input)));
+    let result = JSON.stringify(parseInt(input) * parseInt(input));
+    console.log("My result--> %s", result);
+    res.send(result);
 });
 
 
