@@ -6,3 +6,4 @@ These instruction are to help you solve a test challenge "Calculate Square". Ins
 - Go to `square.js` in routes folder
 - in this file a default post method in implemented (denoted by `/`). 
 - write your implementation in this method. This method will be the entry point when you submit your solution for evaluation
+
