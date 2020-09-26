@@ -18,6 +18,7 @@ function checkNonSilent(first, second) {
 }
 
 router.post('/', function (req, res) {
+    console.log(req.body);
     var infected = req.body['infected'];
     var origin = req.body['origin'];
     var cluster = req.body['cluster'];
