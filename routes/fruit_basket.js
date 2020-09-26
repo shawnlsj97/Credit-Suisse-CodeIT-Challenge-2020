@@ -4,16 +4,15 @@ var weights = [1, 1, 1];
 
 router.post("/", function (req, res) {
   var input = req.body;
-  console.log(input["maApple"]);
-  console.log(input["maWatermelon"]);
-  console.log(input["maBanana"]);
   var basketWeight = 0;
   var i = 0;
   for (var fruit in input) {
+    console.log(fruit);
     var currFruitCount = input[fruit]
     basketWeight += currFruitCount * weights[i];
     i++;
   }
+  console.log(weights);
   res.send(basketWeight.toString());
 });
 
