@@ -89,7 +89,7 @@ function rearrangeGenome() {
     }
 
     // insert the rest of the As
-    newSeq += "A".repeat(alphabets['A']);
+    newSeq += "A".repeat(numAsLeft);
 
     return newSeq;
 }
