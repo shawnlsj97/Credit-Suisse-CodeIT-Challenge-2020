@@ -9,3 +9,4 @@ These instruction are to help you solve a test challenge "Calculate Square". Ins
 - write your implementation in this method. This method will be the entry point when you submit your solution for evaluation
 - You need to follow similar approach for actual challenges. Define the end  point as per instruction for each challenge and then submit your application for evaluation
 
+testing
