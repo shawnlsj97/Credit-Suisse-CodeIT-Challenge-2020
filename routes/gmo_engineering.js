@@ -88,6 +88,9 @@ function rearrangeGenome() {
         newSeq += "T";
     }
 
+    // insert the rest of the As
+    newSeq += "A".repeat(alphabets['A']);
+
     return newSeq;
 }
 
