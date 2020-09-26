@@ -15,6 +15,7 @@ var fruit = require('./routes/fruit_basket').default;
 var cleanFloor = require('./routes/clean_floor').default;
 var inventory = require('./routes/inventory_management').default;
 var olympiad = require('./routes/olympiad').default;
+var cluster = require('./routes/cluster').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -43,6 +44,7 @@ app.use('/clean_floor', cleanFloor);
 app.use('/revisitgeometry', geometry);
 app.use('/inventory-management', inventory);
 app.use('/olympiad-of-babylon', olympiad);
+app.use('/cluster', cluster);
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
