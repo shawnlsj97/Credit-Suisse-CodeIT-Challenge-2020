@@ -52,6 +52,7 @@ function calculateIntersection(lineGradient, lineC, segmentGradient, segmentC, s
 }
 
 router.post('/', function (req, res) {
+    console.log(req);
     var shapeCoords = req.body['shapeCoordinates'];
     var lineCoords = req.body['lineCoordinates'];
 
@@ -99,7 +100,6 @@ router.post('/', function (req, res) {
     }
     
     let result = JSON.stringify(intersections);
-    console.log("My result--> %s", result);
     res.send(result);
 });
 
