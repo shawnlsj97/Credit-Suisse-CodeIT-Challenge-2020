@@ -18,6 +18,7 @@ var cluster = require('./routes/cluster').default;
 var swap = require('./routes/swap').default;
 var social_distancing = require('./routes/social_distancing').default;
 var portfolio = require('./routes/portfolio').default;
+var slsm = require('./routes/slsm').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -51,6 +52,7 @@ app.use('/cluster', cluster);
 app.use('/swaphedge', swap);
 app.use('/social_distancing', social_distancing);
 app.use('/optimizedportfolio', portfolio);
+app.use('/slsm', slsm);
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
