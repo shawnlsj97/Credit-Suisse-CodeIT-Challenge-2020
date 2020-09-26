@@ -3,10 +3,19 @@ var router = Router();
 var comparisonArray = [];
 var result = { "outputs": comparisonArray };
 
+/**
+ * Round to nearest 3 d.p.
+ * @param {Number} number 
+ */
 function roundDp(number) {
     return Math.round(number * 1000) / 1000;
 }
 
+/**
+ * Compares 2 Index Futures
+ * @param {First} a 
+ * @param {Second} b 
+ */
 function compare(a, b) {
   if (a.NumFuturesContract < b.NumFuturesContract) {
     return -1;
