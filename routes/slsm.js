@@ -238,12 +238,12 @@ router.post('/', function (req, res) {
             winnerRollIndex++;
         }
     }
+    /*
     console.log("Winning rolls: " + winningRolls.rolls.toString());
-    console.log("Free winning rolls: " + winningRolls.freeRollsIndices.toString());
     console.log("Losing rolls: " + losingRolls.rolls.toString());
-    console.log("Free losing rolls: " + losingRolls.freeRollsIndices.toString());
     console.log(allRolls.toString());
-    res.send(allRolls.toString());
+    */
+    res.send(allRolls);
 });
 
 
