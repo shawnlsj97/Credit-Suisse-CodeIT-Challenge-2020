@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
       if (isNonSilent) {
         var clusterSame = false;
         for (var i in cluster) {
-          if (cluster[i]['name'].localeCompare(origin['genome']) == 0) {
+          if (cluster[i]['genome'].localeCompare(origin['genome']) == 0) {
             clusterSame = true;
             result_arr.push(`${infected['name']}* -> ${cluster[i]['name']}`);
           } else {
@@ -53,7 +53,7 @@ router.post('/', function (req, res) {
       } else {
         var clusterSame = false;
         for (var i in cluster) {
-          if (cluster[i]['name'].localeCompare(origin['genome']) == 0) {
+          if (cluster[i]['genome'].localeCompare(origin['genome']) == 0) {
             clusterSame = true;
             result_arr.push(`${infected['name']} -> ${cluster[i]['name']}`);
           } else {
