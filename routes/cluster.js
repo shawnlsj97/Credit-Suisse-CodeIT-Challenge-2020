@@ -6,7 +6,7 @@ var cols;
 var snapshot;
 
 function startCluster(r, c) {
-  if (r < 0 || c < 0 || r >= rows || c >= cols || snapshot[r][c] == '*') {
+  if (r < 0 || c < 0 || r >= rows || c >= cols || snapshot[r][c] == '*' || snapshot[r][c] == '2') {
     return;
   }
 
