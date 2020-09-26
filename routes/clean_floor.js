@@ -18,6 +18,7 @@ function countMoves(arr) {
       count++;
       arr[i] = arr[i] - 1;
       count++;
+      i--;
     } else {
       // curr == 0
       if (next != 0 && i == arr.length - 2) {
