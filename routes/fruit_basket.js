@@ -6,7 +6,8 @@ router.post("/", function (req, res) {
   var input = req.body;
   var basketWeight = 0;
   var i = 0;
-  for (var fruit in input) {
+  var fruit = 0;
+  for (fruit in input) {
     console.log(input[fruit]);
     var currFruitCount = input[fruit]
     basketWeight += currFruitCount * weights[i];

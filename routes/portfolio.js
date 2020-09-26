@@ -44,6 +44,7 @@ function compareIndexFuture(currIndexFuture) {
 
 router.post("/", function (req, res) {
   var input = req.body["inputs"][0];
+  console.log(req.body["inputs"]);
   var portfolioData = input["Portfolio"];
   var stdDevSpotPrice = portfolioData["SpotPrcVol"];
   var indexFutures = input["IndexFutures"];
