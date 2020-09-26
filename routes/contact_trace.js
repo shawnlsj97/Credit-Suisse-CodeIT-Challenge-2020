@@ -32,7 +32,14 @@ router.post('/', function (req, res) {
       }
       result_arr.push(`${infected['name']} -> ${origin['name']}`);
     } else if (cluster.length == 0) {
-      result_arr.push(`${infected['name']} -> ${origin['name']}`);
+      var infected_genome = infected['genome'].split("-");
+      var origin_genome = origin['genome'].split("-");
+      var isNonSilent = checkNonSilent(infected_genome, origin_genome);
+      if (isNonSilent) {
+        result_arr.push(`${infected['name']}* -> ${origin['name']}`);
+      } else {
+        result_arr.push(`${infected['name']} -> ${origin['name']}`);
+      }
     } else {
       var infected_genome = infected['genome'].split("-");
       var origin_genome = origin['genome'].split("-");
