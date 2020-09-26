@@ -61,6 +61,10 @@ router.post('/', function (req, res) {
     var intersections = [];
 
     for (let i = 0; i < shapeCoords.length; i++) {
+        if (shapeCoords.length === 2 && i > 0) {
+            break;
+        }
+        
         const firstPoint = shapeCoords[i];
         const secondPoint = shapeCoords[i === shapeCoords.length - 1 ? 0 : i + 1];
         const segmentGradient = calculateGradient(firstPoint, secondPoint);
