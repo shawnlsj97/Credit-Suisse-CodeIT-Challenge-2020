@@ -34,7 +34,6 @@ router.post("/", function (req, res) {
       var numFuturesContract =
         Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
       comparisonArray.push({ "HedgePositionName": currIndexFuture["Name"], "OptimalHedgeRatio": optimalHedgeRatio, "NumFuturesContract": numFuturesContract  });
-      console.log(currIndexFuture);
   }
   comparisonArray.sort(compare);
   var outputArray = [];
