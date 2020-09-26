@@ -19,14 +19,13 @@ function countMoves(arr) {
 }
 
 router.post('/', function (req, res) {
-  console.log(req.body);
     var input = req.body['tests'];
-    console.log(req.body);
     
     var result = {"answer": {}};
     
     var i = 0;
     for (i in input) {
+      console.log(input[i]['floor']);
       result.answer[`${i}`] = countMoves(input[i]['floor']);
     }
     console.log("My result--> %s", result);
