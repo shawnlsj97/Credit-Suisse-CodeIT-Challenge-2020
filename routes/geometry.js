@@ -3,6 +3,10 @@ var router = Router();
 
 const INF = "INF";
 
+function convertNumTo2dp(num) {
+    return parseFloat(parseFloat(num).toFixed(2));
+}
+
 function isNumInRange(num, firstLimit, secondLimit) {
     return num >= Math.min(firstLimit, secondLimit) && num <= Math.max(firstLimit, secondLimit);
 }
@@ -38,14 +42,17 @@ function calculateIntersection(lineGradient, lineC, segmentGradient, segmentC, s
     const y = lineGradient * x + lineC;
 
     // check if intersection is actually on the segment
-    if (y !== segmentGradient * x + segmentC) {
+    if (!isNumInRange(x, segmentFirstPoint['x'], segmentSecondPoint['x'])
+        || !isNumInRange(y, segmentFirstPoint['y'], segmentSecondPoint['y'])) {
         return undefined;
     }
 
-    return { "x": x, "y": y };
+    // console.log("PUSHING! normal: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
+    return { "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) };
 }
 
 router.post('/', function (req, res) {
+    console.log(req.body);
     var shapeCoords = req.body['shapeCoordinates'];
     var lineCoords = req.body['lineCoordinates'];
 
@@ -67,7 +74,8 @@ router.post('/', function (req, res) {
                 // intersection present
                 const x = lineCoords[0]['x'];
                 const y = segmentGradient * x + calculateC(firstPoint, segmentGradient);
-                intersections.push({ "x": x, "y": y });
+                // console.log("PUSHING! line verti: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
+                intersections.push({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) });
             }
             
             continue;
@@ -77,7 +85,8 @@ router.post('/', function (req, res) {
             const x = firstPoint['x'];
             const y = lineGradient * x + lineC;
             if (isNumInRange(y, firstPoint['y'], secondPoint['y'])) {
-                intersections.push({ "x": x, "y": y });
+                // console.log("PUSHING! seg verti: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
+                intersections.push({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) });
             }
 
             continue;
@@ -91,7 +100,6 @@ router.post('/', function (req, res) {
     }
     
     let result = JSON.stringify(intersections);
-    console.log("My result--> %s", result);
     res.send(result);
 });
 
