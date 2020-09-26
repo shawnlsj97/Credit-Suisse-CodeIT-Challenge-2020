@@ -3,7 +3,7 @@ var router = Router();
 var weights = [1, 1, 1];
 
 router.post("/", function (req, res) {
-  var input = req.body;
+  var input = JSON.parse(req.body);
   console.log(req.body);
   var basketWeight = 0;
   var i = 0;
