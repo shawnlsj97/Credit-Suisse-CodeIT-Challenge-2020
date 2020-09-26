@@ -55,9 +55,9 @@ router.post("/", function (req, res) {
       var futuresContractSize = currIndexFuture["IndexFuturePrice"] * currIndexFuture["Notional"];
       var numFuturesContract = Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
       var currResult = {
-          "HedgePositionName": currIndexFuture["Name"],
-          "OptimalHedgeRatio": optimalHedgeRatio,
-          "NumFuturesContract": numFuturesContract,
+          HedgePositionName: currIndexFuture["Name"],
+          OptimalHedgeRatio: optimalHedgeRatio,
+          NumFuturesContract: numFuturesContract,
         };
       compareIndexFuture(currResult);
   }
