@@ -5,7 +5,6 @@ function countMoves(arr) {
   var count = 0;
   var i = 0;
   for (i = 0; i < arr.length; i++) {
-    ptr = i;
     var curr = arr[i];
     var next = arr[i + 1];
     while (curr > 0) {
