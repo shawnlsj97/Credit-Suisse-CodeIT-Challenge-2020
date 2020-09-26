@@ -4,7 +4,9 @@ var weights = [1, 1, 1];
 
 router.post("/", function (req, res) {
   var input = req.body;
-  console.log(input);
+  console.log(input["maApple"]);
+  console.log(input["maWatermelon"]);
+  console.log(input["maBanana"]);
   var basketWeight = 0;
   var i = 0;
   for (var fruit in input) {
