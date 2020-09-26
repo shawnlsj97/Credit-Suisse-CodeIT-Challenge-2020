@@ -63,7 +63,7 @@ router.post('/', function (req, res) {
       console.log(input[i]['floor']);
       result.answer[`${i}`] = countMoves(input[i]['floor']);
     }
-    console.log("My result--> %s", result);
+    console.log("My result--> %s", result['answer']);
     res.send(result);
 });
 
