@@ -68,7 +68,7 @@ router.post("/", function (req, res) {
     comparisonArray = [];
   }
   
-  result["outputs"] = comparisonArray;
+  result["outputs"] = finalArray;
   res.send(result);
 });
 
