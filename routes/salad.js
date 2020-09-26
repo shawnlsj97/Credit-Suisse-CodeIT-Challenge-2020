@@ -12,19 +12,22 @@ router.post("/", function (req, res) {
   var numCols = map[0].length;
   for (var r = 0; r < numRows; r++) {
       var row = map[r];
-      for (var c = 0; c < numCols; c++) {
+      for (var c = 0; c <= numCols - numSalads; c++) {
+          // for each entry, count down the street to check if there are sufficient salad stores to buy from
           for (var ptr = c; ptr < numCols; c++) {
-              // if ptr counts finish num salads then break
               if (saladCount == numSalads) { // finish counting salads
                   break;
-              } else if (row[ptr] != "X") {
+              } else if (row[ptr] != "X") { // still need to count
                   saladCount++;
                   distanceCount += row[ptr];
+              } else { // encounter "X", meaning route is no longer consecutive
+                  break;
               }
           }
           if (saladCount == numSalads && distanceCount < minDistance) {
               minDistance = distanceCount;
           }
+          // reset counters
           saladCount = 0;
           distanceCount = 0;
       }
