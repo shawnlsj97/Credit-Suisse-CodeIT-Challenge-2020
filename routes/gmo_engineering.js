@@ -33,7 +33,7 @@ function rearrangeGenome() {
     // search for pairs of CC
     if (alphabets["C"] >= 2) {
         numCCs = Math.trunc(alphabets["C"] / 2);
-        alphabets["C"] = alphabets["C"] - numPairs * 2;
+        alphabets["C"] = alphabets["C"] - numCCs * 2;
     }
 
     // check for ACGT
@@ -88,12 +88,15 @@ function rearrangeGenome() {
         newSeq += "T";
     }
 
+    // insert the rest of the As
+    newSeq += "A".repeat(numAsLeft);
+
     return newSeq;
 }
 
 router.post("/", function (req, res) {
     const input = req.body; // json object
-    const geneSequence = input["list"]["geneSequence"];
+    const list = input["list"];
 
     for (let i = 0; i < list.length; i++) {
         var currObj = list[i];
