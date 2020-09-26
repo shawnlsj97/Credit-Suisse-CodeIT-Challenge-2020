@@ -16,6 +16,7 @@ var cleanFloor = require('./routes/clean_floor').default;
 var olympiad = require('./routes/olympiad').default;
 var cluster = require('./routes/cluster').default;
 var swap = require('./routes/swap').default;
+var social_distancing = require('./routes/social_distancing').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -45,6 +46,7 @@ app.use('/revisitgeometry', geometry);
 app.use('/olympiad-of-babylon', olympiad);
 app.use('/cluster', cluster);
 app.use('/swaphedge', swap);
+app.use('/social_distancing', social_distancing);
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
