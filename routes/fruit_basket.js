@@ -15,7 +15,7 @@ router.post("/", function (req, res) {
         var currFruitWeight = generateRandomNo;
         basketWeight += currFruitCount * currFruitWeight;
   }
-  res.send(basketWeight);
+  res.sendStatus(basketWeight);
 });
 
 export default router;
