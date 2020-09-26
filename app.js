@@ -11,6 +11,7 @@ var contactTrace = require('./routes/contact_trace').default;
 var salad = require('./routes/salad').default;
 var gmo = require('./routes/gmo_engineering').default;
 var geometry = require('./routes/geometry').default;
+var fruit = require('./routes/fruit_basket').default;
 var cleanFloor = require('./routes/clean_floor').default;
 
 var index = require('./routes/index');
@@ -35,6 +36,7 @@ app.use('/square', square)
 app.use('/contact_trace', contactTrace);
 app.use('/salad-spree', salad);
 app.use('/intelligent-farming', gmo);
+app.use('/fruitbasket', fruit);
 app.use('/clean_floor', cleanFloor);
 app.use('/revisitgeometry', geometry);
 
