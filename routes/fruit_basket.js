@@ -11,7 +11,8 @@ router.post("/", function (req, res) {
         basketWeight += currFruitCount * weights[i];
         i++;
   }
-  res.send(basketWeight.toString());
+  var dummyWeight = 0;
+  res.send(dummyWeight);
 });
 
 export default router;
