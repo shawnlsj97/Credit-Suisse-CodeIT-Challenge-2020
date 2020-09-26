@@ -1,5 +1,5 @@
 import { Router } from "express";
-var answer = { answer: 0 }
+var answer = { "answer": 0 }
 var router = Router();
 var rows;
 var cols;
