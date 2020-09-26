@@ -1,6 +1,7 @@
 import { Router } from "express";
 var router = Router();
 var comparisonArray = [];
+var finalArr = [];
 var result = { "outputs": comparisonArray };
 
 /**
@@ -43,25 +44,30 @@ function compareIndexFuture(currIndexFuture) {
 }
 
 router.post("/", function (req, res) {
-  var input = req.body["inputs"][0];
   console.log(req.body["inputs"]);
-  var portfolioData = input["Portfolio"];
-  var stdDevSpotPrice = portfolioData["SpotPrcVol"];
-  var indexFutures = input["IndexFutures"];
-  for (let i = 0; i < indexFutures.length; i++) {
-      var currIndexFuture = indexFutures[i];
-      var corCoef = currIndexFuture["CoRelationCoefficient"];
-      var stdDevFuturesPrice = currIndexFuture["FuturePrcVol"];
-      var optimalHedgeRatio = roundDp(corCoef * (stdDevSpotPrice / stdDevFuturesPrice));
-      var futuresContractSize = currIndexFuture["IndexFuturePrice"] * currIndexFuture["Notional"];
-      var numFuturesContract = Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
-      var currResult = {
-          HedgePositionName: currIndexFuture["Name"],
-          OptimalHedgeRatio: optimalHedgeRatio,
-          NumFuturesContract: numFuturesContract,
-        };
-      compareIndexFuture(currResult);
+  for (var record in req.body["inputs"]) {
+    var input = req.body["inputs"][record];
+    var portfolioData = input["Portfolio"];
+    var stdDevSpotPrice = portfolioData["SpotPrcVol"];
+    var indexFutures = input["IndexFutures"];
+    for (let i = 0; i < indexFutures.length; i++) {
+        var currIndexFuture = indexFutures[i];
+        var corCoef = currIndexFuture["CoRelationCoefficient"];
+        var stdDevFuturesPrice = currIndexFuture["FuturePrcVol"];
+        var optimalHedgeRatio = roundDp(corCoef * (stdDevSpotPrice / stdDevFuturesPrice));
+        var futuresContractSize = currIndexFuture["IndexFuturePrice"] * currIndexFuture["Notional"];
+        var numFuturesContract = Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
+        var currResult = {
+            HedgePositionName: currIndexFuture["Name"],
+            OptimalHedgeRatio: optimalHedgeRatio,
+            NumFuturesContract: numFuturesContract,
+          };
+        compareIndexFuture(currResult);
+    }
+    finalArr.push[comparisonArray[0]];
+    comparisonArray = [];
   }
+  
   result["outputs"] = comparisonArray;
   res.send(result);
 });
