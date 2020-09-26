@@ -2,6 +2,7 @@ import { Router } from "express";
 var router = Router();
 
 router.post('/', function (req, res) {
+  console.log(req.body);
     var numBooks = req.body["numberOfBooks"];
     var numDays = req.body["numberOfDays"];
     var books = req.body["books"];
@@ -9,8 +10,6 @@ router.post('/', function (req, res) {
     var usedBooks = [];
     var usedDays = [];
 
-    console.log(numBooks);
-    console.log(numDays);
     var i;
     for (i = 0; i < parseInt(numBooks); i++) {
       if (usedBooks.includes(i)) {
