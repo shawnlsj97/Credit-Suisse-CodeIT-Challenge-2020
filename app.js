@@ -13,7 +13,6 @@ var gmo = require('./routes/gmo_engineering').default;
 var geometry = require('./routes/geometry').default;
 var fruit = require('./routes/fruit_basket').default;
 var cleanFloor = require('./routes/clean_floor').default;
-var inventory = require('./routes/inventory_management').default;
 var olympiad = require('./routes/olympiad').default;
 
 var index = require('./routes/index');
@@ -41,7 +40,6 @@ app.use('/intelligent-farming', gmo);
 app.use('/fruitbasket', fruit);
 app.use('/clean_floor', cleanFloor);
 app.use('/revisitgeometry', geometry);
-app.use('/inventory-management', inventory);
 app.use('/olympiad-of-babylon', olympiad);
 
 // catch 404 and forward to error handler`
