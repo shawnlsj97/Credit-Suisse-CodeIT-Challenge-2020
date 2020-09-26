@@ -4,14 +4,11 @@ var router = Router();
 function countMoves(arr) {
   var count = 0;
   var i = 0;
-  for (i = 0; i < arr.length; i++) {
+  for (i = 0; i < arr.length - 1; i++) {
     var curr = arr[i];
     var next = arr[i + 1];
-    while (curr > 0) {
-      arr[i + 1] = arr[i + 1] - 1;
-      count++;
-      arr[i] = arr[i] - 1;
-      count++;
+    if (curr == 0 && next == 0) {
+      break;
     }
   }
   return count;
