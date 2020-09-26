@@ -1,7 +1,6 @@
 import { Router } from "express";
 var router = Router();
 var comparisonArray = [];
-var finalArr = [];
 var result = { "outputs": comparisonArray };
 
 /**
@@ -44,6 +43,7 @@ function compareIndexFuture(currIndexFuture) {
 }
 
 router.post("/", function (req, res) {
+  var finalArr = [];
   console.log(req.body["inputs"]);
   for (var record in req.body["inputs"]) {
     var input = req.body["inputs"][record];
@@ -64,6 +64,7 @@ router.post("/", function (req, res) {
           };
         compareIndexFuture(currResult);
     }
+    console.log("pushed");
     finalArr.push(comparisonArray[0]);
     comparisonArray = [];
   }
