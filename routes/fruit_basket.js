@@ -12,10 +12,10 @@ router.post("/", function (req, res) {
   var basketWeight = 0;
   for (var fruit in input) {
         var currFruitCount = input[fruit]
-        var currFruitWeight = generateRandomNo;
+        var currFruitWeight = generateRandomNo();
         basketWeight += currFruitCount * currFruitWeight;
   }
-  res.send(basketWeight);
+  res.status(200).send(basketWeight.toString());
 });
 
 export default router;
