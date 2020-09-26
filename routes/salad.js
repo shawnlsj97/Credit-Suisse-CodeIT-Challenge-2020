@@ -3,7 +3,6 @@ var router = Router();
 
 router.post("/", function (req, res) {
   var input = req.body;
-  console.log(input);
   var numSalads = parseInt(input["number_of_salads"]);
   var saladCount = 0;
   var distanceCount = 0;
