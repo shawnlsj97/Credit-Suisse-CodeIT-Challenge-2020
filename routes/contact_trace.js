@@ -31,17 +31,37 @@ router.post('/', function (req, res) {
         result_arr.push(`${infected['name']} -> ${cluster[i]['name']}`);
       }
       result_arr.push(`${infected['name']} -> ${origin['name']}`);
+    } else if (cluster.length == 0) {
+      result_arr.push(`${infected['name']} -> ${origin['name']}`);
     } else {
       var infected_genome = infected['genome'].split("-");
       var origin_genome = origin['genome'].split("-");
       var isNonSilent = checkNonSilent(infected_genome, origin_genome);
       if (isNonSilent) {
+        var clusterSame = false;
         for (var i in cluster) {
-          result_arr.push(`${infected['name']}* -> ${cluster[i]['name']} -> ${origin['name']}`);
+          if (cluster[i]['name'].localeCompare(origin['genome']) == 0) {
+            clusterSame = true;
+            result_arr.push(`${infected['name']}* -> ${cluster[i]['name']}`);
+          } else {
+            result_arr.push(`${infected['name']}* -> ${cluster[i]['name']} -> ${origin['name']}`);
+          }
+        }
+        if (clusterSame) {
+          result_arr.push(`${infected['name']}* -> ${origin['name']}`);
         }
       } else {
+        var clusterSame = false;
         for (var i in cluster) {
-          result_arr.push(`${infected['name']} -> ${cluster[i]['name']} -> ${origin['name']}`);
+          if (cluster[i]['name'].localeCompare(origin['genome']) == 0) {
+            clusterSame = true;
+            result_arr.push(`${infected['name']} -> ${cluster[i]['name']}`);
+          } else {
+            result_arr.push(`${infected['name']} -> ${cluster[i]['name']} -> ${origin['name']}`);
+          }
+        }
+        if (clusterSame) {
+          result_arr.push(`${infected['name']} -> ${origin['name']}`);
         }
       }
     }
