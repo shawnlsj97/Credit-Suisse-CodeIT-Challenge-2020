@@ -11,6 +11,7 @@ router.post('/', function (req, res) {
     var usedDays = [];
 
     var i;
+    var foundPartner = false;
     for (i = 0; i < parseInt(numBooks); i++) {
       if (usedBooks.includes(i)) {
         continue;
@@ -21,7 +22,6 @@ router.post('/', function (req, res) {
         if (j == i || usedBooks.includes(j)) {
           continue;
         }
-        var foundPartner = false;
         var k;
         for (k = 0; k < parseInt(numDays); k++) {
           if (usedDays.includes(k)) {
@@ -35,18 +35,20 @@ router.post('/', function (req, res) {
             break;
           }
         }
-        var best = 1000;
-        if (!foundPartner) {
-          // best fit algo
-          for (k = 0; k < parseInt(numDays); k++) {
-            if (usedDays.includes(k)) {
-              continue;
-            }
-            if (k >= books[j] && k < best) {
-              best = k;
-            }
+      }
+      var best = 1000;
+      if (!foundPartner) {
+        // best fit algo
+        for (k = 0; k < parseInt(numDays); k++) {
+          if (usedDays.includes(k)) {
+            continue;
           }
-          usedBooks.push(j);
+          if (k >= books[i] && k < best) {
+            best = k;
+          }
+        }
+        if (days.includes(best)) {
+          usedBooks.push(i);
           usedDays.push(best);
         }
       }
