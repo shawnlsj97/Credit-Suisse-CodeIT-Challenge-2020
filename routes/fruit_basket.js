@@ -1,6 +1,6 @@
 import { Router } from "express";
 var router = Router();
-var weights = [69, 69, 69];
+var weights = [69, 59, 6];
 
 router.post("/", function (req, res) {
   var input = req.body;
@@ -11,7 +11,6 @@ router.post("/", function (req, res) {
     basketWeight += currFruitCount * weights[i];
     i++;
   }
-  console.log(weights);
   res.send(basketWeight.toString());
 });
 
