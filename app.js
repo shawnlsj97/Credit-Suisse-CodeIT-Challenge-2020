@@ -11,6 +11,7 @@ var contactTrace = require('./routes/contact_trace').default;
 var salad = require('./routes/salad').default;
 var gmo = require('./routes/gmo_engineering').default;
 var geometry = require('./routes/geometry').default;
+var cleanFloor = require('./routes/clean_floor').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -35,6 +36,7 @@ app.use('/contact_trace', contactTrace);
 app.use('/salad-spree', salad);
 app.use('/intelligent-farming', gmo);
 app.use('/geometry', geometry);
+app.use('/clean_floor', cleanFloor);
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
