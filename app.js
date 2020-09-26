@@ -6,9 +6,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var square = require('./routes/square');
-var contactTrace = require('./routes/contact_trace');
-var salad = require('./routes/salad');
+var square = require('./routes/square').default;
+var contactTrace = require('./routes/contact_trace').default;
+var salad = require('./routes/salad').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
