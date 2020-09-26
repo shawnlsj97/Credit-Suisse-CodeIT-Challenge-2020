@@ -34,7 +34,7 @@ app.use('/square', square)
 app.use('/contact_trace', contactTrace);
 app.use('/salad-spree', salad);
 app.use('/intelligent-farming', gmo);
-app.use('/geometry', geometry);
+app.use("/revisitgeometry", geometry);
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
