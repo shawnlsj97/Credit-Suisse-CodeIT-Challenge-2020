@@ -1,7 +1,7 @@
 import { Router } from "express";
 var router = Router();
 var comparisonArray = [];
-var result = { "output": comparisonArray };
+var result = { "outputs": comparisonArray };
 
 function roundDp(number) {
     return Math.round(number * 1000) / 1000;
@@ -39,7 +39,7 @@ router.post("/", function (req, res) {
   comparisonArray.sort(compare);
   var outputArray = [];
   outputArray.push(comparisonArray[0]);
-  result["output"] = outputArray;
+  result["outputs"] = outputArray;
   res.send(result);
 });
 
