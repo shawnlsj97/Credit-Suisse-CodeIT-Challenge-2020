@@ -14,7 +14,7 @@ router.post("/", function (req, res) {
   }
   console.log(basketWeight);
   console.log(weights);
-  res.send(basketWeight.toString());
+  res.send(JSON.stringify(basketWeight));
 });
 
 export default router;
