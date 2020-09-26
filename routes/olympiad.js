@@ -59,7 +59,7 @@ router.post('/', function (req, res) {
           if (usedDays.includes(days[k])) {
             continue;
           }
-          if (days[k] >= books[i] && k < best) {
+          if (days[k] >= books[i] && days[k] < best) {
             best = days[k];
           }
         }
