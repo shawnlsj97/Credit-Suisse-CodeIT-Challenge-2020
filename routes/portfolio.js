@@ -20,6 +20,19 @@ function compare(a, b) {
   return 0;
 }
 
+/**
+ * If current index future is "better" than existing one, replace it
+ * @param {Object} currIndexFuture 
+ */
+function compareIndexFuture(currIndexFuture) {
+    if (comparisonArray.length == 0) {
+        comparisonArray.push(currIndexFuture);
+    } else if (compare(currIndexFuture, comparisonArray[0]) < 0) {
+        comparisonArray.pop();
+        comparisonArray.push(currIndexFuture);
+    }
+}
+
 router.post("/", function (req, res) {
   var input = req.body["inputs"][0];
   var portfolioData = input["Portfolio"];
@@ -31,14 +44,15 @@ router.post("/", function (req, res) {
       var stdDevFuturesPrice = currIndexFuture["FuturePrcVol"];
       var optimalHedgeRatio = roundDp(corCoef * (stdDevSpotPrice / stdDevFuturesPrice));
       var futuresContractSize = currIndexFuture["IndexFuturePrice"] * currIndexFuture["Notional"];
-      var numFuturesContract =
-        Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
-      comparisonArray.push({ "HedgePositionName": currIndexFuture["Name"], "OptimalHedgeRatio": optimalHedgeRatio, "NumFuturesContract": numFuturesContract  });
+      var numFuturesContract = Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
+      var currResult = {
+          "HedgePositionName": currIndexFuture["Name"],
+          "OptimalHedgeRatio": optimalHedgeRatio,
+          "NumFuturesContract": numFuturesContract,
+        };
+      compareIndexFuture(currResult);
   }
-  comparisonArray.sort(compare);
-  var outputArray = [];
-  outputArray.push(comparisonArray[0]);
-  result["outputs"] = outputArray;
+  result["outputs"] = comparisonArray;
   res.send(result);
 });
 
