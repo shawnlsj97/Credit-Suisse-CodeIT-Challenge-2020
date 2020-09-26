@@ -3,7 +3,7 @@ var router = Router();
 var searchItemName;
 var array = [];
 
-function matchWord(currItem);
+// function matchWord(currItem);
 router.post("/", function (req, res) {
   var input = req.body;
   var obj = input[0];
