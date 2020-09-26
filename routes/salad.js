@@ -7,21 +7,22 @@ router.post("/", function (req, res) {
   var saladCount = 0;
   var distanceCount = 0;
   var minDistance = Number.MAX_SAFE_INTEGER;
-  var map = input["salad_prices_street_map"][0];
+  var map = input["salad_prices_street_map"];
   var numRows = map.length;
   var numCols = map[0].length;
   for (var r = 0; r < numRows; r++) {
       var row = map[r];
       for (var c = 0; c <= numCols - numSalads; c++) {
           // for each entry, count down the street to check if there are sufficient salad stores to buy from
-          for (var ptr = c; ptr < numCols; c++) {
+          for (var ptr = c; ptr < numCols; ptr++) {
               if (saladCount == numSalads) { // finish counting salads
-                  break;
+                break;
               } else if (row[ptr] != "X") { // still need to count
-                  saladCount++;
-                  distanceCount += row[ptr];
+                var currDistance = Number(row[ptr]);
+                saladCount++;
+                distanceCount += currDistance;
               } else { // encounter "X", meaning route is no longer consecutive
-                  break;
+                break;
               }
           }
           if (saladCount == numSalads && distanceCount < minDistance) {
