@@ -7,8 +7,47 @@ function countMoves(arr) {
   for (i = 0; i < arr.length - 1; i++) {
     var curr = arr[i];
     var next = arr[i + 1];
-    if (curr == 0 && next == 0) {
+    if (curr == 0 && next == 0 && i == arr.length - 2) {
       break;
+    } else if (curr != 0) {
+      if (next == 0) {
+        arr[i + 1] = arr[i + 1] + 1;
+      } else {
+        arr[i + 1] = arr[i + 1] - 1;
+      }
+      count++;
+      arr[i] = arr[i] - 1;
+      count++;
+    } else {
+      // curr == 0
+      if (next != 0 && i == arr.length - 2) {
+        while (arr[i + 1] != 0) {
+          arr[i + 1] = arr[i + 1] - 1;
+          count++;
+          if (arr[i + 1] == 0 && arr[i] == 0) {
+            break;
+          } else {
+            if (arr[i] == 0) {
+              arr[i] = arr[i] + 1;
+              count++;
+            } else {
+              arr[i] = arr[i] - 1;
+              count++;
+            }
+          } 
+        }
+        if (arr[i] != 0) {
+          arr[i] = arr[i] - 1;
+          count++;
+        }
+        
+      } else if (next != 0) {
+        arr[i + 1] = arr[i + 1] - 1;
+        count++;
+      } else {
+        arr[i + 1] = arr[i + 1] + 1;
+        count++;
+      }
     }
   }
   return count;
