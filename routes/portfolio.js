@@ -8,10 +8,13 @@ function roundDp(number) {
 }
 
 function compare(a, b) {
-  if (a.OptimalHedgeRatio < b.OptimalHedgeRatio) {
+  if (a.NumFuturesContract < b.NumFuturesContract) {
     return -1;
-  }
-  if (a.OptimalHedgeRatio > b.OptimalHedgeRatio) {
+  } else if (a.NumFuturesContract > b.NumFuturesContract) {
+    return 1;
+  } else if (a.OptimalHedgeRatio < b.OptimalHedgeRatio) {
+    return -1;
+  } else if (a.OptimalHedgeRatio > b.OptimalHedgeRatio) {
     return 1;
   }
   return 0;
@@ -30,7 +33,7 @@ router.post("/", function (req, res) {
       var futuresContractSize = currIndexFuture["IndexFuturePrice"] * currIndexFuture["Notional"];
       var numFuturesContract =
         Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
-      comparisonArray.push({ "HedgePositionName": currIndexFuture["Name"], "OptimalHedgeRatio": optimalHedgeRatio, "NumFuturesContrac": numFuturesContract  });
+      comparisonArray.push({ "HedgePositionName": currIndexFuture["Name"], "OptimalHedgeRatio": optimalHedgeRatio, "NumFuturesContract": numFuturesContract  });
       console.log(currIndexFuture);
   }
   comparisonArray.sort(compare);
