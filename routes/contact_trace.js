@@ -31,6 +31,8 @@ router.post('/', function (req, res) {
         result_arr.push(`${infected['name']} -> ${cluster[i]['name']}`);
       }
       result_arr.push(`${infected['name']} -> ${origin['name']}`);
+    } else if (cluster.length == 0) {
+      result_arr.push(`${infected['name']} -> ${origin['name']}`);
     } else {
       var infected_genome = infected['genome'].split("-");
       var origin_genome = origin['genome'].split("-");
