@@ -64,9 +64,7 @@ router.post("/", function (req, res) {
           };
         compareIndexFuture(currResult);
     }
-    console.log(comparisonArray[0]);
-    finalArr.push[comparisonArray[0]];
-    console.log(finalArr);
+    finalArr.push(comparisonArray[0]);
     comparisonArray = [];
   }
   
