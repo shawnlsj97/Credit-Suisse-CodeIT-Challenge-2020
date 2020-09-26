@@ -1,6 +1,7 @@
 import { Router } from "express";
 var router = Router();
-var alphabets = { A: 0, C: 0, G: 0, T: 0 }; // initialise alphabet library
+var alphabets = { A: 0, C: 0, G: 0, T: 0 };
+var combinations = { AAA: -10, ACGT: 15, CC: 25 };
 
 function countAlphabet(currSeq) {
     for (let i = 0; i < currSeq.length; i++) {
@@ -8,6 +9,15 @@ function countAlphabet(currSeq) {
       currCount++;
       alphabets[currSeq[i]] = currCount
     }
+}
+
+function resetAlphabet() {
+    alphabets = { A: 0, C: 0, G: 0, T: 0 };
+}
+
+function rearrangeGenome(currSeq) {
+    var newSeq;
+    return newSeq;
 }
 
 router.post("/", function (req, res) {
@@ -19,7 +29,10 @@ router.post("/", function (req, res) {
         var currObj = list[i];
         var currSeq = currObj["geneSequence"];
         countAlphabet(currSeq)
+        input["list"][i]["geneSequence"] = rearrangeGenome(currSeq)
+        resetAlphabet();
     }
+
     console.log(JSON.stringify(alphabets))
     res.send(input);
 });
