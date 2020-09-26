@@ -47,12 +47,12 @@ function calculateIntersection(lineGradient, lineC, segmentGradient, segmentC, s
         return undefined;
     }
 
-    console.log("PUSHING! normal: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
+    // console.log("PUSHING! normal: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
     return { "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) };
 }
 
 router.post('/', function (req, res) {
-    console.log(req);
+    console.log(req.body);
     var shapeCoords = req.body['shapeCoordinates'];
     var lineCoords = req.body['lineCoordinates'];
 
@@ -74,7 +74,7 @@ router.post('/', function (req, res) {
                 // intersection present
                 const x = lineCoords[0]['x'];
                 const y = segmentGradient * x + calculateC(firstPoint, segmentGradient);
-                console.log("PUSHING! line verti: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
+                // console.log("PUSHING! line verti: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
                 intersections.push({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) });
             }
             
@@ -85,7 +85,7 @@ router.post('/', function (req, res) {
             const x = firstPoint['x'];
             const y = lineGradient * x + lineC;
             if (isNumInRange(y, firstPoint['y'], secondPoint['y'])) {
-                console.log("PUSHING! seg verti: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
+                // console.log("PUSHING! seg verti: " + JSON.stringify({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) }));
                 intersections.push({ "x": convertNumTo2dp(x), "y": convertNumTo2dp(y) });
             }
 
