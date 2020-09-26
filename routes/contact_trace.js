@@ -6,8 +6,9 @@ function checkNonSilent(first, second) {
   var count = 0;
   var i = 0;
   for (i = 0; i < len; i++) {
-    if (first[i].charAt(0) == second[i].charAt(0)) {
+    if (first[i].charAt(0) != second[i].charAt(0)) {
       count++;
+      console.log(count);
     }
   }
   if (count >= 2) {
