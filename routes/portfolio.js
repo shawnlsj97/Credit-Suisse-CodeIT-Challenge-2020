@@ -64,11 +64,13 @@ router.post("/", function (req, res) {
           };
         compareIndexFuture(currResult);
     }
+    console.log(comparisonArray[0]);
     finalArr.push[comparisonArray[0]];
+    console.log(finalArr);
     comparisonArray = [];
   }
   
-  result["outputs"] = finalArray;
+  result["outputs"] = finalArr;
   res.send(result);
 });
 
