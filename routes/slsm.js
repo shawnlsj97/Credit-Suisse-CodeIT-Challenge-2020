@@ -214,10 +214,8 @@ router.post('/', function (req, res) {
     const board = createBoard(boardSize, jumpObjs);
     
     const winningRolls = findWinningRolls(board);
-    const numNotFreeWinningRolls = winningRolls.rolls.length - winningRolls.freeRollsIndices.size;
+    const numNotFreeWinningRolls = winningRolls.rolls.length - winningRolls.freeRollsIndices.size + 1;
     const losingRolls = findLosingRolls(board, numNotFreeWinningRolls);
-    console.log(winningRolls.rolls.length);
-    console.log(losingRolls.rolls.length);
 
     let allRolls = [];
     let loserRollIndex = 0, winnerRollIndex = 0;
@@ -241,7 +239,9 @@ router.post('/', function (req, res) {
         }
     }
     console.log("Winning rolls: " + winningRolls.rolls.toString());
+    console.log("Free winning rolls: " + winningRolls.freeRollsIndices.toString());
     console.log("Losing rolls: " + losingRolls.rolls.toString());
+    console.log("Free losing rolls: " + losingRolls.freeRollsIndices.toString());
     console.log(allRolls.toString());
     res.send(allRolls.toString());
 });
