@@ -1,6 +1,6 @@
 import { Router } from "express";
 var router = Router();
-var weights = [90, 100, 100];
+var weights = [50, 50, 50];
 
 router.post("/", function (req, res) {
   var input = req.body;
