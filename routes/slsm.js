@@ -58,7 +58,13 @@ function createBoard(boardSize, jumpObjs) {
     return board;
 }
 
-function indexOfSquareTypeInSteps(steps, squareType) {
+function indexOfSquareTypeInSteps(steps, squareType, isDescendingSearch = false) {
+    if (isDescendingSearch) {
+        for (let i = steps.length - 1; i >= 0; i++)
+            if (steps[i].type === squareType) return i;
+        return -1;
+    }
+
     for (let i = 0; i < steps.length; i++)
         if (steps[i].type === squareType) return i;
     return -1;
@@ -107,7 +113,7 @@ function findWinningRolls(board) {
         }
 
         // no ladders or mirrors within reach; attempt to avoid the snakes and smoke
-        const blankIndex = indexOfSquareTypeInSteps(nextSix, Square.BLANK);
+        const blankIndex = indexOfSquareTypeInSteps(nextSix, Square.BLANK, true);
         if (blankIndex >= 0) {
             winningRolls.push(nextSix[blankIndex].squareNumber - currStep);
             currStep = nextSix[blankIndex].squareNumber;
