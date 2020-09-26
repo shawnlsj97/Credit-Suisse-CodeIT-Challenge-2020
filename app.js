@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var square = require('./routes/square').default;
 var contactTrace = require('./routes/contact_trace').default;
 var salad = require('./routes/salad').default;
+var gmo = require('./routes/gmo_engineering').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -31,6 +32,8 @@ app.use('/', index);
 app.use('/square', square)
 app.use('/contact_trace', contactTrace);
 app.use('/salad-spree', salad);
+app.use('/intelligent-farming', gmo);
+
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
