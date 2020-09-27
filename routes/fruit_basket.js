@@ -5,8 +5,8 @@ weights.set("maPomegranate", 1);
 weights.set("maPineapple", 48);
 weights.set("maAvocado", 58);
 weights.set("maApple", 93);
-weights.set("maWatermelon", 1);
-weights.set("maRamubutan", 1);
+weights.set("maWatermelon", 14);
+weights.set("maRamubutan", 36);
 
 
 router.post("/", function (req, res) {
