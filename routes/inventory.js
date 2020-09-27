@@ -11,17 +11,28 @@ router.post('/', function (req, res) {
       var item = items[i];
       console.log(item);
       var fixedName = "";
+      var x = 0;
+      var y = 0;
       for (var j = 0; j < item.length; j++) {
-        if (item.charAt(j) == name.charAt(j)) {
-          fixedName += item.charAt(j);
-        } else if (item.charAt(j) == name.charAt(j + 1)) {
+        if (item.charAt(x) == name.charAt(y)) {
+          fixedName += item.charAt(x);
+          x++;
+          y++;
+        } else if (item.charAt(x) == name.charAt(y + 1)) {
           fixedName += "-";
-          fixedName += name.charAt(j);
-        } else if (item.charAt(j + 1) == name.charAt(j + 1)) {
-          fixedName += item.charAt(j);
+          fixedName += name.charAt(y);
+          fixedName += item.charAt(x);
+          x++;
+          y++;
+          y++;
+        } else if (item.charAt(x + 1) == name.charAt(x + 1)) {
+          fixedName += item.charAt(x);
+          x++;
+          y++;
         } else {
           fixedName += "+";
-          fixedName += item.charAt(j);
+          fixedName += item.charAt(x);
+          x++;
         }
       }
       result[0].searchResult.push(fixedName);
