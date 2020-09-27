@@ -1,44 +1,80 @@
 import { Router } from "express";
 var router = Router();
 
+function sort(arr) {
+  arr.sort(function(a, b) {
+    if (a.numOperations < b.numOperations) {
+      return -1;
+    } else if (a.numOperations > b.numOperations) {
+      return 1;
+    } else {
+      if (a.original < b.original) {
+        return -1;
+      } else if (a.original > b.original) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
+}
+
 router.post('/', function (req, res) {
-    var name = req.body[0]["searchItemName"];
-    var items = req.body[0]["items"];
+  let result = [];  
+  for (var i = 0; i < req.body.length; i++) {
+    var name = req.body[i]["searchItemName"];
+    var items = req.body[i]["items"];
     console.log(name);
     console.log(items);
-    let result = [{"searchItemName":`${name}`,"searchResult":[]}];
-    for (var i in items) {
-      var item = items[i];
-      console.log(item);
-      var fixedName = "";
+    var resul = {"searchItemName":`${name}`,"searchResult":[]};
+    var intermediate = [];
+    for (var j in items) {
+      var item = items[j];
+      var r = {"fixedName": "", "numOperations": 0, "original": item};
       var x = 0;
       var y = 0;
-      for (var j = 0; j < item.length; j++) {
+      for (var b = 0; b < item.length; b++) {
         if (item.charAt(x).toLowerCase() == name.charAt(y).toLowerCase()) {
-          fixedName += name.charAt(y);
+          r.fixedName += item.charAt(x).toLowerCase();
           x++;
           y++;
-        } else if (item.charAt(x).toLowerCase() == name.charAt(y + 1).toLowerCase()) {
-          fixedName += "-";
-          fixedName += name.charAt(y);
-          fixedName += item.charAt(x).toLowerCase();
+        } else if (item.charAt(x).toLowerCase() == name.charAt(y+1).toLowerCase()) {
+          r.fixedName += name.charAt(y).toLowerCase();
+          r.fixedName += name.charAt(x).toLowerCase();
           x++;
           y++;
           y++;
-        } else if (item.charAt(x + 1).toLowerCase() == name.charAt(y + 1).toLowerCase()) {
-          fixedName += item.charAt(x);
-          x++;
+        } else if (!name.includes(y, item.charAt(x).toLowerCase())) {
+          if (item.charAt(x + 1) == " ") {
+            r.fixedName += "+";
+            r.fixedName += item.charAt(x).toLowerCase();
+            x++;
+            r.numOperations++;
+          } else {
+            r.fixedName += item.charAt(x).toLowerCase();
+            x++;
+            r.numOperations++;
+          }       
+        } else if (name.includes(y, item.charAt(x).toLowerCase())) {
+          r.fixedName += "-";
+          r.fixedName += item.charAt(y).toLowerCase();
           y++;
-        } else {
-          fixedName += "+";
-          fixedName += item.charAt(x);
-          x++;
+          r.numOperations++;
         }
       }
-      result[0].searchResult.push(fixedName);
+      intermediate.push(r);
     }
-    console.log("My result--> %s", result);
-    res.send(JSON.stringify(result));
+    sort(intermediate);
+    console.log(intermediate);
+    for (var k in intermediate) {
+      var r = intermediate[k];
+      resul.searchResult.push(r.fixedName);
+    }
+    result.push(resul);
+  }
+    
+  console.log("My result--> %s", result);
+  res.send(JSON.stringify(result));
 });
 
 
