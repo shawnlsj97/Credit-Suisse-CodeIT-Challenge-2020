@@ -36,7 +36,7 @@ router.post("/", function (req, res) {
                 pairOneValue = books[i];
                 pairTwoValue = books[j];
                 pairDayIndex = k;
-                lowestDiff == currRemainder;
+                lowestDiff = currRemainder;
               }
             }
           }
@@ -48,7 +48,9 @@ router.post("/", function (req, res) {
             books.splice(1, pairOneIndex);
             var pairTwoIndex = books.indexOf(pairTwoValue);
             books.splice(1, pairTwoIndex);
-            days.splice(1, pairDayIndex);
+            var currDay = days[pairDayIndex];
+            currDay = lowestDiff;
+            days[pairDayIndex] = currDay;
             reset();
       } else { // cannot assign in pairs, need to assign individually
         break;
