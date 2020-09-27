@@ -21,6 +21,10 @@ function compare(a, b) {
     return -1;
   } else if (a.OptimalHedgeRatio > b.OptimalHedgeRatio) {
     return 1;
+  } else if (a.FuturePrcVol < b.FuturePrcVol) {
+    return -1;
+  } else if (a.FuturePrcVol > b.FuturePrcVol) {
+    return 1;
   } else if (a.NumFuturesContract < b.NumFuturesContract) {
     return -1;
   } else if (a.NumFuturesContract > b.NumFuturesContract) {
@@ -60,16 +64,19 @@ router.post("/", function (req, res) {
         var futuresContractSize = currIndexFuture["IndexFuturePrice"] * currIndexFuture["Notional"];
         var numFuturesContract = Math.round((optimalHedgeRatio * portfolioData["Value"]) / futuresContractSize);
         var currResult = {
-            HedgePositionName: currIndexFuture["Name"],
-            OptimalHedgeRatio: optimalHedgeRatio,
-            NumFuturesContract: numFuturesContract,
-          };
+          HedgePositionName: currIndexFuture["Name"],
+          OptimalHedgeRatio: optimalHedgeRatio,
+          NumFuturesContract: numFuturesContract,
+          FuturePrcVol: stdDevFuturesPrice,
+        };
         compareIndexFuture(currResult);
     }
-    finalArr.push(comparisonArray[0]);
-    console.log(typeof comparisonArray[0]);
-    console.log(`pushed: ${JSON.stringify(comparisonArray[0])}`);
-    comparisonArray = [];
+    var chosenIndexFuture = comparisonArray[0];
+    delete chosenIndexFuture.FuturePrcVol;
+    finalArr.push(chosenIndexFuture);
+    console.log(typeof chosenIndexFuture);
+    console.log(`pushed: ${JSON.stringify(chosenIndexFuture)}`);
+    comparisonArray = []; // reset comparison array for next portfolio
   }
   result["outputs"] = finalArr;
   console.log(`final array: ${finalArr}`);
