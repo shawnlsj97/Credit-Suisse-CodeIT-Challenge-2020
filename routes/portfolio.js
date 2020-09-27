@@ -65,13 +65,13 @@ router.post("/", function (req, res) {
           };
         compareIndexFuture(currResult);
     }
-    console.log("pushed");
     finalArr.push(comparisonArray[0]);
+    console.log(`pushed: ${comparisonArray[0]}`);
     comparisonArray = [];
   }
   result["outputs"] = finalArr;
   console.log(`final array: ${finalArr}`);
-  console.log(`results: ${result}`)
+  console.log(`results: ${JSON.stringify(result)}`);
   res.send(result);
 });
 
