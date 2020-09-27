@@ -39,8 +39,9 @@ router.post('/', function (req, res) {
           x++;
           y++;
         } else if (item.charAt(x).toLowerCase() == name.charAt(y+1).toLowerCase()) {
+          r.fixedName += "-";
           r.fixedName += name.charAt(y).toLowerCase();
-          r.fixedName += name.charAt(x).toLowerCase();
+          r.fixedName += item.charAt(x).toLowerCase();
           x++;
           y++;
           y++;
