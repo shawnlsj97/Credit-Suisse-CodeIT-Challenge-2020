@@ -17,13 +17,13 @@ function roundDp(number) {
  * @param {Second} b 
  */
 function compare(a, b) {
-  if (a.NumFuturesContract < b.NumFuturesContract) {
-    return -1;
-  } else if (a.NumFuturesContract > b.NumFuturesContract) {
-    return 1;
-  } else if (a.OptimalHedgeRatio < b.OptimalHedgeRatio) {
+  if (a.OptimalHedgeRatio < b.OptimalHedgeRatio) {
     return -1;
   } else if (a.OptimalHedgeRatio > b.OptimalHedgeRatio) {
+    return 1;
+  } else if (a.NumFuturesContract < b.NumFuturesContract) {
+    return -1;
+  } else if (a.NumFuturesContract > b.NumFuturesContract) {
     return 1;
   }
   return 0;
@@ -34,9 +34,11 @@ function compare(a, b) {
  * @param {Object} currIndexFuture 
  */
 function compareIndexFuture(currIndexFuture) {
-    if (comparisonArray.length == 0) {
+    if (comparisonArray.length == 0) { // if no arrays to compare, then just add the current index future
         comparisonArray.push(currIndexFuture);
+        console.log(`added ${currIndexFuture}`);
     } else if (compare(currIndexFuture, comparisonArray[0]) < 0) {
+        console.log(`removing ${comparisonArray[0]}, adding ${currIndexFuture}`)
         comparisonArray.pop();
         comparisonArray.push(currIndexFuture);
     }
@@ -52,7 +54,6 @@ router.post("/", function (req, res) {
     var indexFutures = input["IndexFutures"];
     for (let i = 0; i < indexFutures.length; i++) {
         var currIndexFuture = indexFutures[i];
-        console.log(currIndexFuture);
         var corCoef = currIndexFuture["CoRelationCoefficient"];
         var stdDevFuturesPrice = currIndexFuture["FuturePrcVol"];
         var optimalHedgeRatio = roundDp(corCoef * (stdDevSpotPrice / stdDevFuturesPrice));
@@ -66,7 +67,8 @@ router.post("/", function (req, res) {
         compareIndexFuture(currResult);
     }
     finalArr.push(comparisonArray[0]);
-    console.log(`pushed: ${comparisonArray[0]}`);
+    console.log(typeof comparisonArray[0]);
+    console.log(`pushed: ${JSON.stringify(comparisonArray[0])}`);
     comparisonArray = [];
   }
   result["outputs"] = finalArr;
