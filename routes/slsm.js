@@ -76,13 +76,13 @@ function findWinningRolls(board) {
     // find the series of rolls that will lead to victory
     let winningRolls = [];
     let freeRollsIndices = new Set();
-    let currStep = 0;
+    let currStep = 1;
     while (currStep !== boardSize) {
         if (currStep === boardSize) break;
 
         if (boardSize - currStep <= 6) {
             winningRolls.push(boardSize - currStep - 1);
-            currStep = boardSize;
+            currStep += winningRolls[winningRolls.length - 1];
             break;
         }
 
@@ -150,7 +150,7 @@ function findLosingRolls(board, numWinningRolls) {
     // just need to stagnate until the winner is done winning
     let losingRolls = [];
     let freeRollsIndices = new Set();
-    let currStep = 0;
+    let currStep = 1;
     for (let i = 0; i < numWinningRolls; i++) {
         // if the end is within reach, stop them from reaching the end
         if (boardSize - currStep === 6) {
