@@ -1,7 +1,7 @@
 import { Router } from "express";
 var router = Router();
 var weights = new Map();
-weights.set("maPomegranate", 1);
+weights.set("maPomegranate", 53);
 weights.set("maPineapple", 48);
 weights.set("maAvocado", 58);
 weights.set("maApple", 93);
