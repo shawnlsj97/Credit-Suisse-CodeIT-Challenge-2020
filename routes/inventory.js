@@ -38,6 +38,10 @@ router.post('/', function (req, res) {
           r.fixedName += item.charAt(x).toLowerCase();
           x++;
           y++;
+        } else if (item.charAt(y) == ' ') {
+          r.fixedName += "+";
+          r.fixedName += item.charAt(x).toLowerCase();
+          x++;
         } else if (item.charAt(x).toLowerCase() == name.charAt(y+1).toLowerCase()) {
           r.fixedName += "-";
           r.fixedName += name.charAt(y).toLowerCase();
