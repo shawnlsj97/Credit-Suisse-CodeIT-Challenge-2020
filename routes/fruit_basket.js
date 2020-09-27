@@ -1,12 +1,12 @@
 import { Router } from "express";
 var router = Router();
 var weights = new Map();
-weights.set("maPomegranate", 53);
-weights.set("maPineapple", 48);
+weights.set("maPomegranate", 52);
+weights.set("maPineapple", 47);
 weights.set("maAvocado", 58);
 weights.set("maApple", 93);
 weights.set("maWatermelon", 14);
-weights.set("maRamubutan", 36);
+weights.set("maRamubutan", 35);
 
 
 router.post("/", function (req, res) {
