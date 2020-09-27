@@ -208,7 +208,7 @@ function findLosingRolls(board, numWinningRolls) {
 
 router.post('/', function (req, res) {
     console.log(req.body);
-    if (firstGameRolls !== undefined) return res.send(firstGameRolls);
+    // if (firstGameRolls !== undefined) return res.send(firstGameRolls.toString());
     const boardSize = req.body['boardSize'];
     const players = req.body['players'];
     const jumps = req.body['jumps'];
@@ -248,7 +248,7 @@ router.post('/', function (req, res) {
 
     firstGameRolls = allRolls;
     
-    res.send(allRolls);
+    res.send(allRolls.toString());
 });
 
 
