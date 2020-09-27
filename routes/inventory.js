@@ -14,18 +14,18 @@ router.post('/', function (req, res) {
       var x = 0;
       var y = 0;
       for (var j = 0; j < item.length; j++) {
-        if (item.charAt(x) == name.charAt(y)) {
-          fixedName += item.charAt(x);
+        if (item.charAt(x).toLowerCase() == name.charAt(y).toLowerCase()) {
+          fixedName += name.charAt(y);
           x++;
           y++;
-        } else if (item.charAt(x) == name.charAt(y + 1)) {
+        } else if (item.charAt(x).toLowerCase() == name.charAt(y + 1).toLowerCase()) {
           fixedName += "-";
           fixedName += name.charAt(y);
-          fixedName += item.charAt(x);
+          fixedName += item.charAt(x).toLowerCase();
           x++;
           y++;
           y++;
-        } else if (item.charAt(x + 1) == name.charAt(x + 1)) {
+        } else if (item.charAt(x + 1).toLowerCase() == name.charAt(y + 1).toLowerCase()) {
           fixedName += item.charAt(x);
           x++;
           y++;
