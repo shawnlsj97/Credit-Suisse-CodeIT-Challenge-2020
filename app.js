@@ -14,6 +14,7 @@ var geometry = require('./routes/geometry').default;
 var fruit = require('./routes/fruit_basket').default;
 var cleanFloor = require('./routes/clean_floor').default;
 var olympiad = require('./routes/olympiad').default;
+var inventory = require('./routes/inventory').default;
 var cluster = require('./routes/cluster').default;
 var swap = require('./routes/swap').default;
 var social_distancing = require('./routes/social_distancing').default;
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/square', square)
 app.use('/contact_trace', contactTrace);
+app.use('/inventory-management', inventory);
 app.use('/salad-spree', salad);
 app.use('/intelligent-farming', gmo);
 app.use('/fruitbasket', fruit);
