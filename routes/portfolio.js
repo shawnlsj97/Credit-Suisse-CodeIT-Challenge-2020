@@ -52,6 +52,7 @@ router.post("/", function (req, res) {
     var indexFutures = input["IndexFutures"];
     for (let i = 0; i < indexFutures.length; i++) {
         var currIndexFuture = indexFutures[i];
+        console.log(currIndexFuture);
         var corCoef = currIndexFuture["CoRelationCoefficient"];
         var stdDevFuturesPrice = currIndexFuture["FuturePrcVol"];
         var optimalHedgeRatio = roundDp(corCoef * (stdDevSpotPrice / stdDevFuturesPrice));
@@ -68,8 +69,9 @@ router.post("/", function (req, res) {
     finalArr.push(comparisonArray[0]);
     comparisonArray = [];
   }
-  
   result["outputs"] = finalArr;
+  console.log(`final array: ${finalArr}`);
+  console.log(`results: ${result}`)
   res.send(result);
 });
 
