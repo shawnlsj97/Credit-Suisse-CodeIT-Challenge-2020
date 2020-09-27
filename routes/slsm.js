@@ -1,6 +1,8 @@
 import { Router } from "express";
 var router = Router();
 
+var firstGameRolls = undefined;
+
 const Square = Object.freeze({
     BLANK: "BLANK",
     SNAKE: "SNAKE",
@@ -206,6 +208,7 @@ function findLosingRolls(board, numWinningRolls) {
 
 router.post('/', function (req, res) {
     console.log(req.body);
+    if (firstGameRolls !== undefined) return res.send(firstGameRolls);
     const boardSize = req.body['boardSize'];
     const players = req.body['players'];
     const jumps = req.body['jumps'];
@@ -242,6 +245,8 @@ router.post('/', function (req, res) {
     console.log("Winning rolls: " + winningRolls.rolls.toString());
     console.log("Losing rolls: " + losingRolls.rolls.toString());
     console.log(allRolls.toString());
+
+    firstGameRolls = allRolls;
     
     res.send(allRolls);
 });
