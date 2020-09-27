@@ -1,5 +1,6 @@
 import { Router } from "express";
 var router = Router();
+var result = { optimalNumberOfBooks: 0 };
 
 var books;
 var days;
@@ -18,8 +19,6 @@ function reset() {
 
 router.post("/", function (req, res) {
   var input = req.body;
-  var numBooks = input["numberofBooks"];
-  var numDays = input["numberOfDays"];
   books = input["books"];
   days = input["days"];
   pairOneValue = -1;
@@ -45,17 +44,39 @@ router.post("/", function (req, res) {
       }
       if (pairOneValue != -1 && pairTwoValue != -1) {
             bookCount += 2;
-            var pairOneIndex = books.indexof(pairOneValue);
+            var pairOneIndex = books.indexOf(pairOneValue);
             books.splice(1, pairOneIndex);
-            var pairTwoIndex = books.indexof(pairTwoValue);
+            var pairTwoIndex = books.indexOf(pairTwoValue);
             books.splice(1, pairTwoIndex);
             days.splice(1, pairDayIndex);
             reset();
-      } else { // cannot assign in pairs
+      } else { // cannot assign in pairs, need to assign individually
         break;
       }
   }
-
+  reset();
+  while (days.length != 0 && books.length != 0) {
+      for (let i = 0; i < books.length; i++) {
+          for (let j = 0; j < days.length; j++) {
+              var currRemainder = days[j] - books[i];
+              if (currRemainder >= 0 && currRemainder < lowestDiff) {
+                  pairOneValue = books[j];
+                  pairDayIndex = days[j];
+                  lowestDiff = currRemainder;
+              }
+          }
+      }
+      if (pairOneValue != -1) {
+          bookCount++;
+          var pairOneIndex = books.indexOf(pairOneValue);
+          books.splice(1, pairOneIndex);
+          days.splice(1, pairDayIndex);
+          reset();
+      } else {
+          break;
+      }
+  }
+  result["optimalNumberOfBooks"] = bookCount;
   res.send(result);
 });
 
