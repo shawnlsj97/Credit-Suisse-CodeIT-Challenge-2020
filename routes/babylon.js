@@ -36,6 +36,9 @@ router.post("/", function (req, res) {
                 pairOneValue = books[i];
                 pairTwoValue = books[j];
                 pairDayIndex = k;
+                console.log(
+                  `pairing ${pairOneValue} with ${pairTwoValue} on ${days[pairDayIndex]}`
+                );
                 lowestDiff = currRemainder;
               }
             }
