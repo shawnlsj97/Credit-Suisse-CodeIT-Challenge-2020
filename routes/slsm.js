@@ -205,6 +205,7 @@ function findLosingRolls(board, numWinningRolls) {
 }
 
 router.post('/', function (req, res) {
+    console.log(req.body);
     const boardSize = req.body['boardSize'];
     const players = req.body['players'];
     const jumps = req.body['jumps'];
@@ -237,6 +238,10 @@ router.post('/', function (req, res) {
             winnerRollIndex++;
         }
     }
+    
+    console.log("Winning rolls: " + winningRolls.rolls.toString());
+    console.log("Losing rolls: " + losingRolls.rolls.toString());
+    console.log(allRolls.toString());
     
     res.send(allRolls);
 });
