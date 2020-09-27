@@ -53,7 +53,11 @@ router.post("/", function (req, res) {
             books.splice(1, pairTwoIndex);
             var currDay = days[pairDayIndex];
             currDay = lowestDiff;
-            days[pairDayIndex] = currDay;
+            if (lowestDiff == 0) {
+                days.splice(1, pairDayIndex);
+            } else {
+                days[pairDayIndex] = currDay;
+            }
             reset();
       } else { // cannot assign in pairs, need to assign individually
         break;
