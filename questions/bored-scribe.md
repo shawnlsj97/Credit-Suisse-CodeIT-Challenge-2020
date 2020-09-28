@@ -32,6 +32,7 @@ The input given is in the form of a json array.
 - Adding up the ASCII character codes of racecar: `114 + 97 + 99 + 101 + 99 + 97 + 114 = 721`
 - We sum the two numbers to get value: `4 + 721 = 725`.
 - The original text undergoes caesar cipher with a shift of the above value, `725` to get the encrypted code: `oxzbzxofpxkbkdifpemxifkaoljb`
+
 Hint 1: The encrypted text strips away all spaces. However, the unencrypted text should be in the form of an English sentence without punctuations.
 
 Hint 2: How do we differentiate racecar and race car in the original text? See hint 3
