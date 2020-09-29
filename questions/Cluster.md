@@ -1,4 +1,5 @@
-Cluster
+# Cluster
+
 Given an area (2D array of '1's, '0s' and '*'s) at a specific time snapshot, you are tasked to find the number of clusters.
 
 '1' represents an infected individual who has the ability to transmit the virus.
@@ -13,13 +14,15 @@ A cluster is formed if there are infected individuals, or if there are virus tra
 
 You can assume the area is always made up by a constant length and breadth and can disregard anything beyond the given area. Individuals are also static and cannot move.
 
-Constraints
+## Constraints
+
 3 <= length of area <= 1000
 
 3 <= breadth of area <= 1000
 
-Sample Input 1
+### Sample Input 1
 
+```
   [
     ["*", "*", "*", "*"],
     ["*", "1", "*", "*"],
@@ -27,12 +30,19 @@ Sample Input 1
     ["*", "*", "*", "1"],
     ["*", "*", "*", "*"]
   ]
-Sample Output 1
+```
+
+### Sample Output 1
+
+```
 {
   "answer": 2
 }
-Sample Input 2
+```
 
+### Sample Input 2
+
+```
   [
     ["*", "*", "*", "*"],
     ["*", "1", "0", "*"],
@@ -40,12 +50,19 @@ Sample Input 2
     ["*", "*", "0", "0"],
     ["*", "*", "*", "*"]
   ]
-Sample Output 2
+```
+
+### Sample Output 2
+
+```
 {
   "answer": 1
 }
-Sample Input 3
+```
 
+### Sample Input 3
+
+```
   [
     ["*", "*", "*", "*"],
     ["*", "1", "0", "*"],
@@ -53,12 +70,19 @@ Sample Input 3
     ["*", "*", "0", "0"],
     ["*", "*", "*", "*"]
   ]
-Sample Output 3
+```
+
+### Sample Output 3
+
+```
 {
   "answer": 1
 }
-Sample Input 4
+```
 
+### Sample Input 4
+
+```
   [
     ["1", "0", "*", "*"],
     ["0", "0", "*", "0"],
@@ -67,12 +91,19 @@ Sample Input 4
     ["*", "*", "*", "*"],
     ["*", "0", "0", "*"]
   ]
-Sample Output 4
+```
+
+### Sample Output 4
+
+```
 {
   "answer": 1
 }
-Sample Input 5
+```
 
+### Sample Input 5
+
+```
   [
     ["*", "*", "*", "*", "*", "*", "*", "*", "*"],
     ["*", "0", "0", "0", "*", "*", "*", "*", "*"],
@@ -88,12 +119,20 @@ Sample Input 5
     ["*", "*", "1", "0", "0", "*", "*", "*", "*"],
     ["*", "*", "*", "*", "*", "*", "*", "*", "*"]
   ]
-Sample Output 5
+```
+
+### Sample Output 5
+
+```
 {
   "answer": 2
 }
-Evaluation
+```
+
+## Evaluation
+
 Your solution will be run against multiple random test cases. Be sure to include corner cases.
 
-Requirements
-Expose 1 POST endpoint /cluster for evaluation
+## Requirements
+
+Expose 1 POST endpoint `/cluster` for evaluation
