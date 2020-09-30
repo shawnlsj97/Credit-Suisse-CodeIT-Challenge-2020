@@ -1,3 +1,5 @@
+Team Name: PQL babes
+
 These instruction are to help you solve a test challenge "Calculate Square". Instruction to this test challenge can be found at https://calculate-square.herokuapp.com/instructions
 
 ## Step by step
